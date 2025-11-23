@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orlando Christmas Vacation Planner (Dec 21-27, 2025)</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
             background: #f8f9fa;
             color: #333;
         }
@@ -18,93 +21,160 @@
             text-align: center;
             border-bottom: 3px solid #165b33;
             padding-bottom: 15px;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
         }
         h2 {
             color: #165b33;
             margin-top: 30px;
             border-left: 5px solid #c41e3a;
             padding-left: 15px;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
         }
         h3 {
             color: #c41e3a;
             margin-top: 20px;
+            font-size: clamp(1rem, 3vw, 1.3rem);
         }
         .header-info {
             text-align: center;
-            font-size: 1.1em;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             color: #666;
             margin-bottom: 30px;
         }
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+        }
         table {
             width: 100%;
+            min-width: 600px;
             border-collapse: collapse;
-            margin: 20px 0;
             background: white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         th {
             background: #165b33;
             color: white;
-            padding: 12px;
+            padding: 12px 8px;
             text-align: left;
             font-weight: 600;
+            font-size: clamp(0.8rem, 2vw, 1rem);
         }
         td {
-            padding: 10px 12px;
+            padding: 10px 8px;
             border-bottom: 1px solid #ddd;
+            font-size: clamp(0.85rem, 2vw, 1rem);
         }
         tr:hover {
             background: #f5f5f5;
         }
         .section {
             background: white;
-            padding: 20px;
-            margin: 20px 0;
+            padding: 15px;
+            margin: 15px 0;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .note {
             background: #fff3cd;
             border-left: 4px solid #ffc107;
-            padding: 15px;
+            padding: 12px;
             margin: 15px 0;
             border-radius: 4px;
+            font-size: clamp(0.85rem, 2vw, 1rem);
         }
         .tip {
             background: #d4edda;
             border-left: 4px solid #28a745;
-            padding: 15px;
+            padding: 12px;
             margin: 15px 0;
             border-radius: 4px;
+            font-size: clamp(0.85rem, 2vw, 1rem);
         }
         .important {
             background: #f8d7da;
             border-left: 4px solid #dc3545;
-            padding: 15px;
+            padding: 12px;
             margin: 15px 0;
             border-radius: 4px;
+            font-size: clamp(0.85rem, 2vw, 1rem);
         }
         ul {
             line-height: 1.8;
+            padding-left: 20px;
+            font-size: clamp(0.85rem, 2vw, 1rem);
         }
         .itinerary-day {
             background: #e7f3ff;
-            padding: 15px;
+            padding: 12px;
             margin: 10px 0;
             border-radius: 5px;
             border-left: 5px solid #0066cc;
+            font-size: clamp(0.85rem, 2vw, 1rem);
         }
         .itinerary-day strong {
             color: #0066cc;
-            font-size: 1.1em;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .section {
+                padding: 12px;
+                margin: 10px 0;
+            }
+            h2 {
+                margin-top: 20px;
+                padding-left: 10px;
+                border-left: 3px solid #c41e3a;
+            }
+            table {
+                min-width: 500px;
+            }
+            th, td {
+                padding: 8px 5px;
+            }
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            .section {
+                padding: 10px;
+                margin: 8px 0;
+            }
+            h1 {
+                padding-bottom: 10px;
+                border-bottom: 2px solid #165b33;
+            }
+            table {
+                min-width: 450px;
+                font-size: 0.8rem;
+            }
+            th, td {
+                padding: 6px 4px;
+            }
+            .note, .tip, .important {
+                padding: 10px;
+                margin: 10px 0;
+            }
+            ul {
+                padding-left: 15px;
+            }
         }
         @media print {
             body {
                 background: white;
+                padding: 0;
             }
             .section {
                 box-shadow: none;
                 page-break-inside: avoid;
+            }
+            .table-wrapper {
+                overflow-x: visible;
             }
         }
     </style>
@@ -118,6 +188,7 @@
 
     <div class="section">
         <h2>DISNEY PARKS & ATTRACTIONS</h2>
+        <div class="table-wrapper">
         <table>
             <tr>
                 <th>Activity</th>
@@ -192,10 +263,12 @@
                 <td>Dining reservation required</td>
             </tr>
         </table>
+        </div>
     </div>
 
     <div class="section">
         <h2>UNIVERSAL ORLANDO</h2>
+        <div class="table-wrapper">
         <table>
             <tr>
                 <th>Activity</th>
@@ -254,6 +327,7 @@
                 <td>Included with admission</td>
             </tr>
         </table>
+        </div>
         
         <div class="note">
             <strong>Harry Potter Recommendation:</strong> The atmosphere and shops are magical for young kids, but most rides are too intense for ages 2-5. Consider a shorter visit (3-4 hours) to explore Hogsmeade/Diagon Alley, let kids cast spells with wands, and enjoy Butterbeer. Flight of Hippogriff is the only truly kid-friendly ride (36" minimum). Your 6-year-old nephew who loves Star Wars might enjoy it more, but the Star Wars area is at Disney's Hollywood Studios, not Universal.
@@ -262,6 +336,7 @@
 
     <div class="section">
         <h2>CATHOLIC CHURCHES - CHRISTMAS SERVICES</h2>
+        <div class="table-wrapper">
         <table>
             <tr>
                 <th>Church</th>
@@ -299,6 +374,7 @@
                 <td>Interpreted for deaf at 5:30pm Sunday mass</td>
             </tr>
         </table>
+        </div>
         
         <div class="note">
             <strong>Note:</strong> Call ahead or check church websites in mid-December for exact Christmas Eve and Christmas Day mass times. Most churches add extra services for Christmas.
@@ -307,6 +383,7 @@
 
     <div class="section">
         <h2>CHRISTMAS DAY RESTAURANTS (KID-FRIENDLY)</h2>
+        <div class="table-wrapper">
         <table>
             <tr>
                 <th>Restaurant</th>
@@ -379,6 +456,7 @@
                 <td>Belly dancing entertainment, festive atmosphere</td>
             </tr>
         </table>
+        </div>
         
         <div class="important">
             <strong>Reservation Recommendations:</strong> Make reservations NOW for Christmas Day - these fill up quickly! Most require reservations and have cancellation fees if cancelled after Dec 20.
@@ -387,6 +465,7 @@
 
     <div class="section">
         <h2>ORLANDO AREA ACTIVITIES (NON-THEME PARK)</h2>
+        <div class="table-wrapper">
         <table>
             <tr>
                 <th>Activity</th>
@@ -477,10 +556,12 @@
                 <td>PERFECT for your 6-year-old Lego-loving nephew! Duplo Valley for toddlers</td>
             </tr>
         </table>
+        </div>
     </div>
 
     <div class="section">
         <h2>FREE CHRISTMAS EVENTS</h2>
+        <div class="table-wrapper">
         <table>
             <tr>
                 <th>Event</th>
@@ -513,6 +594,7 @@
                 <td>40-ft animated Christmas tree lighting at 6:30pm, Santa & elves</td>
             </tr>
         </table>
+        </div>
     </div>
 
     <div class="section">
@@ -677,6 +759,7 @@
 
     <div class="section">
         <h2>CONTACT INFORMATION</h2>
+        <div class="table-wrapper">
         <table>
             <tr>
                 <th>Service</th>
@@ -707,6 +790,7 @@
                 <td>Available at Hilton Grand Vacations Club Parc Soleil</td>
             </tr>
         </table>
+        </div>
     </div>
 
-    <div style="text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #165b
+    <div style="text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #165b33, #c41e3a); color: white; border-radius: 8px; font-size: clamp(0.9rem, 2.5vw, 1.1rem);">
