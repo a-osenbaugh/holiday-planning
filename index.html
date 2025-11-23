@@ -41,6 +41,160 @@
             color: #666;
             margin-bottom: 30px;
         }
+        
+        /* Voting Section Styles */
+        .voting-section {
+            background: linear-gradient(135deg, #fff5f5, #f0f8ff);
+            border: 3px solid #c41e3a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+        .voting-section h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #c41e3a;
+            border: none;
+            padding: 0;
+        }
+        .vote-question {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #165b33;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .vote-question h3 {
+            margin-top: 0;
+            color: #165b33;
+        }
+        .vote-options {
+            margin: 15px 0;
+        }
+        .vote-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .vote-option:hover {
+            background: #e9ecef;
+            border-color: #165b33;
+        }
+        .vote-option input[type="checkbox"],
+        .vote-option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+        .vote-option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
+        }
+        .name-input {
+            margin: 15px 0;
+        }
+        .name-input input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .name-input input:focus {
+            outline: none;
+            border-color: #165b33;
+        }
+        .submit-vote-btn {
+            background: #165b33;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+            font-weight: 600;
+        }
+        .submit-vote-btn:hover {
+            background: #0e3d20;
+        }
+        .submit-vote-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .vote-results {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .vote-results h3 {
+            text-align: center;
+            color: #165b33;
+            margin-top: 0;
+        }
+        .result-item {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .result-item strong {
+            color: #c41e3a;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .result-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 30px;
+            margin: 8px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .result-bar-fill {
+            background: linear-gradient(90deg, #165b33, #28a745);
+            height: 100%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .voter-list {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .success-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+        
         .table-wrapper {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -125,6 +279,12 @@
                 padding: 12px;
                 margin: 10px 0;
             }
+            .voting-section {
+                padding: 15px;
+            }
+            .vote-question {
+                padding: 15px;
+            }
             h2 {
                 margin-top: 20px;
                 padding-left: 10px;
@@ -145,6 +305,12 @@
                 padding: 10px;
                 margin: 8px 0;
             }
+            .voting-section {
+                padding: 12px;
+            }
+            .vote-question {
+                padding: 12px;
+            }
             h1 {
                 padding-bottom: 10px;
                 border-bottom: 2px solid #165b33;
@@ -163,6 +329,10 @@
             ul {
                 padding-left: 15px;
             }
+            .submit-vote-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
         }
         @media print {
             body {
@@ -176,6 +346,9 @@
             .table-wrapper {
                 overflow-x: visible;
             }
+            .voting-section {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -183,6 +356,405 @@
     <h1>🎄 Orlando Christmas Vacation Planner 🎄</h1>
     <div class="header-info">
         <strong>December 21-27, 2025</strong><br>
+        Hilton Grand Vacations Club Parc Soleil, Orlando, Florida
+    </div>
+
+    <!-- VOTING SECTION -->
+    <div class="voting-section">
+        <h2>📊 Family Vote - Help Us Plan Together!</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">
+            Please share your preferences so we can coordinate our activities. Everyone's input matters!
+        </p>
+
+        <div class="name-input">
+            <label for="voterName" style="display: block; margin-bottom: 8px; font-weight: 600; color: #165b33;">
+                Your Name:
+            </label>
+            <input type="text" id="voterName" placeholder="Enter your name" required>
+        </div>
+
+        <div class="vote-question">
+            <h3>1. Magic Kingdom Interest</h3>
+            <p>Who would be interested in spending a day at Magic Kingdom?</p>
+            <div class="vote-options">
+                <div class="vote-option" onclick="toggleCheckbox('mk-yes')">
+                    <input type="checkbox" id="mk-yes" value="yes">
+                    <label for="mk-yes">Yes, I'm interested in Magic Kingdom!</label>
+                </div>
+                <div class="vote-option" onclick="toggleCheckbox('mk-no')">
+                    <input type="checkbox" id="mk-no" value="no">
+                    <label for="mk-no">No, I'll skip Magic Kingdom</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="vote-question">
+            <h3>2. Holiday Dinner Preference</h3>
+            <p>If we do ONE holiday dinner out as a group, which would you prefer?</p>
+            <div class="vote-options">
+                <div class="vote-option" onclick="selectRadio('dinner-eve')">
+                    <input type="radio" name="dinner" id="dinner-eve" value="Christmas Eve Dinner">
+                    <label for="dinner-eve">Christmas Eve Dinner</label>
+                </div>
+                <div class="vote-option" onclick="selectRadio('dinner-brunch')">
+                    <input type="radio" name="dinner" id="dinner-brunch" value="Christmas Brunch/Lunch">
+                    <label for="dinner-brunch">Christmas Brunch/Lunch</label>
+                </div>
+                <div class="vote-option" onclick="selectRadio('dinner-dinner')">
+                    <input type="radio" name="dinner" id="dinner-dinner" value="Christmas Dinner">
+                    <label for="dinner-dinner">Christmas Dinner</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="vote-question">
+            <h3>3. Christmas Mass Preference</h3>
+            <p>If interested in attending Christmas Mass, which time would you prefer?</p>
+            <div class="vote-options">
+                <div class="vote-option" onclick="selectRadio('mass-eve')">
+                    <input type="radio" name="mass" id="mass-eve" value="Christmas Eve">
+                    <label for="mass-eve">Christmas Eve</label>
+                </div>
+                <div class="vote-option" onclick="selectRadio('mass-morning')">
+                    <input type="radio" name="mass" id="mass-morning" value="Christmas Morning">
+                    <label for="mass-morning">Christmas Morning</label>
+                </div>
+                <div class="vote-option" onclick="selectRadio('mass-neither')">
+                    <input type="radio" name="mass" id="mass-neither" value="Neither">
+                    <label for="mass-neither">Neither - I'll skip Mass</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="vote-question">
+            <h3>4. Additional Attractions Interest</h3>
+            <p>Which of these attractions are you interested in? (Select all that apply)</p>
+            <div class="vote-options">
+                <div class="vote-option" onclick="toggleCheckbox('attraction-hp')">
+                    <input type="checkbox" id="attraction-hp" value="Harry Potter World">
+                    <label for="attraction-hp">Harry Potter World at Universal</label>
+                </div>
+                <div class="vote-option" onclick="toggleCheckbox('attraction-legoland')">
+                    <input type="checkbox" id="attraction-legoland" value="Legoland">
+                    <label for="attraction-legoland">Legoland</label>
+                </div>
+                <div class="vote-option" onclick="toggleCheckbox('attraction-grinchmas')">
+                    <input type="checkbox" id="attraction-grinchmas" value="Grinchmas at Universal">
+                    <label for="attraction-grinchmas">Grinchmas at Universal Studios</label>
+                </div>
+            </div>
+        </div>
+
+        <button class="submit-vote-btn" onclick="submitVote()">Submit My Preferences</button>
+        
+        <div id="successMessage" style="display: none;"></div>
+    </div>
+
+    <!-- RESULTS SECTION -->
+    <div class="voting-section vote-results" id="resultsSection">
+        <h3>📈 Current Votes</h3>
+        <p style="text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 20px;">
+            Results update automatically as family members vote
+        </p>
+
+        <div class="result-item">
+            <strong>Magic Kingdom Interest:</strong>
+            <div>
+                <div style="margin: 8px 0;">Interested: <span id="mk-yes-count">0</span></div>
+                <div class="result-bar">
+                    <div class="result-bar-fill" id="mk-yes-bar" style="width: 0%;">
+                        <span id="mk-yes-percent">0%</span>
+                    </div>
+                </div>
+                <div class="voter-list" id="mk-yes-voters"></div>
+            </div>
+            <div style="margin-top: 15px;">
+                <div style="margin: 8px 0;">Not Interested: <span id="mk-no-count">0</span></div>
+                <div class="result-bar">
+                    <div class="result-bar-fill" id="mk-no-bar" style="width: 0%; background: linear-gradient(90deg, #666, #999);">
+                        <span id="mk-no-percent">0%</span>
+                    </div>
+                </div>
+                <div class="voter-list" id="mk-no-voters"></div>
+            </div>
+        </div>
+
+        <div class="result-item">
+            <strong>Holiday Dinner Preference:</strong>
+            <div id="dinner-results"></div>
+        </div>
+
+        <div class="result-item">
+            <strong>Christmas Mass Preference:</strong>
+            <div id="mass-results"></div>
+        </div>
+
+        <div class="result-item">
+            <strong>Additional Attractions Interest:</strong>
+            <div id="attractions-results"></div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px; color: #666; font-size: 0.9rem;">
+            Total Votes: <strong id="totalVotes">0</strong>
+        </div>
+    </div>
+
+    <script>
+        // Storage key for votes
+        const VOTES_KEY = 'disney-trip-votes';
+
+        // Load votes from storage on page load
+        async function loadVotes() {
+            try {
+                const result = await window.storage.get(VOTES_KEY, true);
+                if (result && result.value) {
+                    return JSON.parse(result.value);
+                }
+            } catch (error) {
+                console.log('No existing votes found');
+            }
+            return {};
+        }
+
+        // Save votes to storage
+        async function saveVotes(votes) {
+            try {
+                await window.storage.set(VOTES_KEY, JSON.stringify(votes), true);
+                return true;
+            } catch (error) {
+                console.error('Error saving votes:', error);
+                return false;
+            }
+        }
+
+        // Toggle checkbox
+        function toggleCheckbox(id) {
+            const checkbox = document.getElementById(id);
+            checkbox.checked = !checkbox.checked;
+        }
+
+        // Select radio button
+        function selectRadio(id) {
+            document.getElementById(id).checked = true;
+        }
+
+        // Submit vote
+        async function submitVote() {
+            const name = document.getElementById('voterName').value.trim();
+            
+            if (!name) {
+                alert('Please enter your name before submitting!');
+                return;
+            }
+
+            // Get Magic Kingdom preference
+            const mkYes = document.getElementById('mk-yes').checked;
+            const mkNo = document.getElementById('mk-no').checked;
+            
+            if (!mkYes && !mkNo) {
+                alert('Please indicate your Magic Kingdom preference!');
+                return;
+            }
+
+            // Get dinner preference
+            const dinnerPref = document.querySelector('input[name="dinner"]:checked');
+            if (!dinnerPref) {
+                alert('Please select a holiday dinner preference!');
+                return;
+            }
+
+            // Get mass preference
+            const massPref = document.querySelector('input[name="mass"]:checked');
+            if (!massPref) {
+                alert('Please select a Christmas Mass preference!');
+                return;
+            }
+
+            // Get attraction preferences
+            const attractions = [];
+            if (document.getElementById('attraction-hp').checked) attractions.push('Harry Potter World');
+            if (document.getElementById('attraction-legoland').checked) attractions.push('Legoland');
+            if (document.getElementById('attraction-grinchmas').checked) attractions.push('Grinchmas at Universal');
+
+            // Load existing votes
+            const votes = await loadVotes();
+
+            // Add/update this person's vote
+            votes[name] = {
+                magicKingdom: mkYes ? 'yes' : 'no',
+                dinner: dinnerPref.value,
+                mass: massPref.value,
+                attractions: attractions,
+                timestamp: new Date().toISOString()
+            };
+
+            // Save votes
+            const saved = await saveVotes(votes);
+            
+            if (saved) {
+                // Show success message
+                const successMsg = document.getElementById('successMessage');
+                successMsg.className = 'success-message';
+                successMsg.style.display = 'block';
+                successMsg.textContent = `✅ Thank you, ${name}! Your preferences have been recorded.`;
+                
+                // Clear form
+                document.getElementById('voterName').value = '';
+                document.getElementById('mk-yes').checked = false;
+                document.getElementById('mk-no').checked = false;
+                document.querySelectorAll('input[name="dinner"]').forEach(r => r.checked = false);
+                document.querySelectorAll('input[name="mass"]').forEach(r => r.checked = false);
+                document.getElementById('attraction-hp').checked = false;
+                document.getElementById('attraction-legoland').checked = false;
+                document.getElementById('attraction-grinchmas').checked = false;
+
+                // Update results
+                displayResults(votes);
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            } else {
+                alert('There was an error saving your vote. Please try again.');
+            }
+        }
+
+        // Display results
+        function displayResults(votes) {
+            const totalVoters = Object.keys(votes).length;
+            document.getElementById('totalVotes').textContent = totalVoters;
+
+            if (totalVoters === 0) {
+                return;
+            }
+
+            // Magic Kingdom results
+            const mkYesVoters = [];
+            const mkNoVoters = [];
+            
+            // Dinner preferences
+            const dinnerCounts = {};
+            
+            // Mass preferences
+            const massCounts = {};
+
+            // Attraction preferences
+            const attractionCounts = {};
+
+            // Count votes
+            for (const [name, vote] of Object.entries(votes)) {
+                // Magic Kingdom
+                if (vote.magicKingdom === 'yes') {
+                    mkYesVoters.push(name);
+                } else {
+                    mkNoVoters.push(name);
+                }
+
+                // Dinner
+                dinnerCounts[vote.dinner] = (dinnerCounts[vote.dinner] || 0) + 1;
+
+                // Mass
+                massCounts[vote.mass] = (massCounts[vote.mass] || 0) + 1;
+
+                // Attractions
+                if (vote.attractions && Array.isArray(vote.attractions)) {
+                    vote.attractions.forEach(attraction => {
+                        if (!attractionCounts[attraction]) {
+                            attractionCounts[attraction] = { count: 0, voters: [] };
+                        }
+                        attractionCounts[attraction].count++;
+                        attractionCounts[attraction].voters.push(name);
+                    });
+                }
+            }
+
+            // Update Magic Kingdom results
+            updateResult('mk-yes', mkYesVoters.length, totalVoters, mkYesVoters.join(', '));
+            updateResult('mk-no', mkNoVoters.length, totalVoters, mkNoVoters.join(', '));
+
+            // Update dinner results
+            updateCategoryResults('dinner-results', dinnerCounts, totalVoters);
+
+            // Update mass results
+            updateCategoryResults('mass-results', massCounts, totalVoters);
+
+            // Update attractions results
+            updateAttractionsResults('attractions-results', attractionCounts, totalVoters);
+        }
+
+        // Update individual result
+        function updateResult(id, count, total, voters) {
+            const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
+            document.getElementById(`${id}-count`).textContent = count;
+            document.getElementById(`${id}-bar`).style.width = percentage + '%';
+            document.getElementById(`${id}-percent`).textContent = percentage + '%';
+            document.getElementById(`${id}-voters`).textContent = voters || 'No votes yet';
+        }
+
+        // Update category results (dinner, mass)
+        function updateCategoryResults(elementId, counts, total) {
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+
+            const sortedOptions = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+            if (sortedOptions.length === 0) {
+                container.innerHTML = '<div style="color: #999; font-style: italic;">No votes yet</div>';
+                return;
+            }
+
+            sortedOptions.forEach(([option, count]) => {
+                const percentage = Math.round((count / total) * 100);
+                const div = document.createElement('div');
+                div.style.marginTop = '15px';
+                div.innerHTML = `
+                    <div style="margin: 8px 0;">${option}: ${count} vote${count !== 1 ? 's' : ''}</div>
+                    <div class="result-bar">
+                        <div class="result-bar-fill" style="width: ${percentage}%;">
+                            <span>${percentage}%</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Update attractions results
+        function updateAttractionsResults(elementId, attractionCounts, total) {
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+
+            const sortedAttractions = Object.entries(attractionCounts).sort((a, b) => b[1].count - a[1].count);
+
+            if (sortedAttractions.length === 0) {
+                container.innerHTML = '<div style="color: #999; font-style: italic;">No votes yet</div>';
+                return;
+            }
+
+            sortedAttractions.forEach(([attraction, data]) => {
+                const percentage = Math.round((data.count / total) * 100);
+                const div = document.createElement('div');
+                div.style.marginTop = '15px';
+                div.innerHTML = `
+                    <div style="margin: 8px 0;">${attraction}: ${data.count} interested</div>
+                    <div class="result-bar">
+                        <div class="result-bar-fill" style="width: ${percentage}%;">
+                            <span>${percentage}%</span>
+                        </div>
+                    </div>
+                    <div class="voter-list">${data.voters.join(', ')}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Load and display results on page load
+        (async function() {
+            const votes = await loadVotes();
+            displayResults(votes);
+        })();
+    </script><strong>December 21-27, 2025</strong><br>
         Hilton Grand Vacations Club Parc Soleil, Orlando, Florida
     </div>
 
@@ -204,7 +776,7 @@
                 <td>Daily</td>
                 <td>All Ages</td>
                 <td>Best for your kids - Frozen Holiday Surprise show, character meets with Minnie Mouse & Elsa. Jingle Cruise ride</td>
-                <td>Park admission required</td>
+                <td><a href="https://disneyworld.disney.go.com/destinations/magic-kingdom/" target="_blank">Park admission required</a></td>
             </tr>
             <tr>
                 <td><strong>Mickey's Very Merry Christmas Party</strong></td>
@@ -220,7 +792,7 @@
                 <td>Nov 28 - Dec 30</td>
                 <td>All Ages</td>
                 <td>Candlelight Processional, international holiday celebrations, JOYFUL! show</td>
-                <td>Park admission</td>
+                <td><a href="https://disneyworld.disney.go.com/events-tours/epcot/holidays-around-the-world/" target="_blank">Park admission</a></td>
             </tr>
             <tr>
                 <td><strong>EPCOT - Frozen Ever After</strong></td>
@@ -228,7 +800,7 @@
                 <td>Daily</td>
                 <td>All Ages</td>
                 <td>Perfect for your Elsa fans! Gets holiday overlay</td>
-                <td>Park admission</td>
+                <td><a href="https://disneyworld.disney.go.com/attractions/epcot/frozen-ever-after/" target="_blank">Park admission</a></td>
             </tr>
             <tr>
                 <td><strong>Disney's Hollywood Studios</strong></td>
@@ -236,7 +808,7 @@
                 <td>Daily</td>
                 <td>All Ages</td>
                 <td>Tower of Terror projection show, Santa meet & greets (through Dec 24)</td>
-                <td>Park admission</td>
+                <td><a href="https://disneyworld.disney.go.com/destinations/hollywood-studios/" target="_blank">Park admission</a></td>
             </tr>
             <tr>
                 <td><strong>Disney Jollywood Nights</strong></td>
@@ -252,7 +824,7 @@
                 <td>FREE - Daily</td>
                 <td>All Ages</td>
                 <td>Christmas Tree Stroll, Santa visits (through Dec 24), snow flurries, shopping</td>
-                <td>FREE entry</td>
+                <td><a href="https://www.disneysprings.com/" target="_blank">FREE entry</a></td>
             </tr>
             <tr>
                 <td><strong>Character Dining - Minnie's Holiday Dine</strong></td>
@@ -260,7 +832,7 @@
                 <td>Through Jan 4, 2026</td>
                 <td>All Ages</td>
                 <td>Holiday dinner party with Minnie Mouse and friends - great for your character-loving kids!</td>
-                <td>Dining reservation required</td>
+                <td><a href="https://disneyworld.disney.go.com/dining/hollywood-studios/hollywood-and-vine/" target="_blank">Dining reservation required</a></td>
             </tr>
         </table>
         </div>
@@ -284,7 +856,7 @@
                 <td>Nov 21 - Jan 4, 2026</td>
                 <td>All Ages</td>
                 <td>Grinchmas Who-liday Spectacular show, meet the Grinch, Whoville characters, 65-ft Christmas tree lighting</td>
-                <td>Park admission</td>
+                <td><a href="https://www.universalorlando.com/web/en/us/things-to-do/events/grinchmas" target="_blank">Park admission</a></td>
             </tr>
             <tr>
                 <td><strong>Harry Potter - Hogsmeade</strong></td>
@@ -292,7 +864,7 @@
                 <td>Daily</td>
                 <td>All Ages</td>
                 <td>Your husband can enjoy! Kids can explore shops, buy wands, cast spells. Flight of Hippogriff (36" height). Main rides too intense for under 7</td>
-                <td>Park admission</td>
+                <td><a href="https://www.universalorlando.com/web/en/us/theme-parks/islands-of-adventure/the-wizarding-world-of-harry-potter-hogsmeade" target="_blank">Park admission</a></td>
             </tr>
             <tr>
                 <td><strong>Harry Potter - Diagon Alley</strong></td>
@@ -300,7 +872,7 @@
                 <td>Daily</td>
                 <td>All Ages</td>
                 <td>Explore shops, Ollivanders wand show, atmosphere. Main ride (Gringotts) may be too intense for young kids</td>
-                <td>Park admission</td>
+                <td><a href="https://www.universalorlando.com/web/en/us/theme-parks/universal-studios-florida/the-wizarding-world-of-harry-potter-diagon-alley" target="_blank">Park admission</a></td>
             </tr>
             <tr>
                 <td><strong>Grinch & Friends Character Breakfast</strong></td>
@@ -308,7 +880,7 @@
                 <td>Select dates during Grinchmas</td>
                 <td>All Ages</td>
                 <td>Breakfast with the Grinch, Max, and Whos</td>
-                <td>$58.99 adults, $32.99 kids 3-9</td>
+                <td><a href="https://www.universalorlando.com/web/en/us/things-to-do/dining/grinch-and-friends-character-breakfast" target="_blank">$58.99 adults, $32.99 kids 3-9</a></td>
             </tr>
             <tr>
                 <td><strong>Universal's Holiday Parade featuring Macy's</strong></td>
@@ -316,7 +888,7 @@
                 <td>Nov 21 - Jan 4, 2026</td>
                 <td>All Ages</td>
                 <td>Giant balloons, floats, 80-ft Christmas tree lighting</td>
-                <td>Included with admission</td>
+                <td><a href="https://www.universalorlando.com/web/en/us/things-to-do/events/holidays" target="_blank">Included with admission</a></td>
             </tr>
             <tr>
                 <td><strong>Christmas in Wizarding World</strong></td>
@@ -324,7 +896,7 @@
                 <td>Nov 21 - Jan 4, 2026</td>
                 <td>All Ages</td>
                 <td>Holiday decorations, hot Butterbeer, Frog Choir, Christmas at Hogwarts Castle show</td>
-                <td>Included with admission</td>
+                <td><a href="https://www.universalorlando.com/web/en/us/things-to-do/events/holidays" target="_blank">Included with admission</a></td>
             </tr>
         </table>
         </div>
@@ -350,28 +922,28 @@
                 <td>215 N Orange Ave, Orlando</td>
                 <td>Multiple masses - check website closer to Christmas</td>
                 <td>~15 miles</td>
-                <td>Downtown Orlando's cathedral, likely special Christmas masses</td>
+                <td>Downtown Orlando's cathedral, likely special Christmas masses - <a href="https://stjamesorlando.org/" target="_blank">Visit Website</a></td>
             </tr>
             <tr>
                 <td><strong>Holy Family Catholic Church</strong></td>
                 <td>5125 S Apopka Vineland Rd, Orlando</td>
                 <td>Regular schedule plus special Christmas masses</td>
                 <td>~5 miles</td>
-                <td>Close to your hotel area, family-friendly</td>
+                <td>Close to your hotel area, family-friendly - <a href="https://www.holyfamilyorlando.com/" target="_blank">Visit Website</a></td>
             </tr>
             <tr>
                 <td><strong>St. John Vianney Catholic Church</strong></td>
                 <td>7601 Fort Desoto St, Orlando</td>
                 <td>Masses in English & Spanish</td>
                 <td>~8 miles</td>
-                <td>Multiple mass times</td>
+                <td>Multiple mass times - <a href="https://sjvorlando.org/" target="_blank">Visit Website</a></td>
             </tr>
             <tr>
                 <td><strong>Annunciation Catholic Church</strong></td>
                 <td>1620 E Robinson St, Altamonte Springs</td>
                 <td>Saturday Vigil & Sunday masses available</td>
                 <td>~20 miles</td>
-                <td>Interpreted for deaf at 5:30pm Sunday mass</td>
+                <td>Interpreted for deaf at 5:30pm Sunday mass - <a href="https://annunciationorlando.org/" target="_blank">Visit Website</a></td>
             </tr>
         </table>
         </div>
@@ -397,63 +969,63 @@
                 <td>Tapas, Bottomless Brunch</td>
                 <td>11am-3pm (brunch), 4-10pm (dinner)</td>
                 <td>$39.22 brunch</td>
-                <td>Carving station, kids enjoy tapas-style sharing</td>
+                <td>Carving station, kids enjoy tapas-style sharing - <a href="https://www.cafetututango.com/" target="_blank">Make Reservation</a></td>
             </tr>
             <tr>
                 <td><strong>Rosen Plaza - Ballroom Buffet</strong></td>
                 <td>Holiday Buffet</td>
                 <td>Lunch/Dinner</td>
                 <td>$58.95 adults, $26.95 kids 4-12, FREE under 3</td>
-                <td>Kids buffet section, unlimited champagne/mimosas for adults</td>
+                <td>Kids buffet section, unlimited champagne/mimosas for adults - <a href="https://www.rosenplaza.com/christmas/" target="_blank">Call (407) 996-0256</a></td>
             </tr>
             <tr>
                 <td><strong>Rosen Centre - Christmas Buffet</strong></td>
                 <td>Holiday Buffet</td>
                 <td>Early dinner available</td>
                 <td>Contact for pricing</td>
-                <td>Traditional holiday favorites, kid-friendly</td>
+                <td>Traditional holiday favorites, kid-friendly - <a href="https://www.rosencentre.com/christmas/" target="_blank">Visit Website</a></td>
             </tr>
             <tr>
                 <td><strong>Rosen Shingle Creek - Café Osceola</strong></td>
                 <td>Christmas Day Buffet Brunch</td>
                 <td>11am-6pm</td>
                 <td>$99.95 adults, $44.95 kids 4-11, FREE under 3</td>
-                <td>Multiple stations, kid-friendly options</td>
+                <td>Multiple stations, kid-friendly options - <a href="https://www.rosenshinglecreek.com/christmas/" target="_blank">Call (407) 996-3663</a></td>
             </tr>
             <tr>
                 <td><strong>Waldorf Astoria - Oscar's</strong></td>
                 <td>Holiday Buffet</td>
                 <td>3pm-9pm</td>
                 <td>$85 adults, $40 kids 6-12, FREE under 4</td>
-                <td>Classic holiday fare, upscale setting</td>
+                <td>Classic holiday fare, upscale setting - <a href="https://www.waldorfastoriaorlando.com/holiday-dining/" target="_blank">Call (407) 597-5483</a></td>
             </tr>
             <tr>
                 <td><strong>Caribe Royale - Tropicale</strong></td>
                 <td>Christmas Brunch</td>
                 <td>12pm-4pm</td>
                 <td>$78 adults, $25 kids</td>
-                <td>Multiple food stations, sushi, seafood, desserts</td>
+                <td>Multiple food stations, sushi, seafood, desserts - <a href="https://www.cariberoyale.com/" target="_blank">Call (407) 238-8000</a></td>
             </tr>
             <tr>
                 <td><strong>Columbia Restaurant</strong> (Celebration)</td>
                 <td>Cuban Christmas Dinner</td>
                 <td>4-10pm</td>
                 <td>Check pricing</td>
-                <td>Family-style available, Flamenco dancing at 7pm</td>
+                <td>Family-style available, Flamenco dancing at 7pm - <a href="https://www.columbiarestaurant.com/celebration" target="_blank">Make Reservation</a></td>
             </tr>
             <tr>
                 <td><strong>Mia's Italian Kitchen</strong> (I-Drive)</td>
                 <td>Italian Prix Fixe</td>
                 <td>11am-4pm</td>
                 <td>$49/person</td>
-                <td>3-course comfort meal</td>
+                <td>3-course comfort meal - <a href="https://www.miasitaliankitchen.com/" target="_blank">Call (407) 601-7130</a></td>
             </tr>
             <tr>
                 <td><strong>Taverna Opa</strong> (Pointe Orlando)</td>
                 <td>Greek Family-Style</td>
                 <td>7pm start</td>
                 <td>$39/person for family-style</td>
-                <td>Belly dancing entertainment, festive atmosphere</td>
+                <td>Belly dancing entertainment, festive atmosphere - <a href="https://www.opaorlando.com/" target="_blank">Make Reservation</a></td>
             </tr>
         </table>
         </div>
@@ -481,7 +1053,7 @@
                 <td>Nov 29 - Dec 31, nightly 6-9pm</td>
                 <td>All Ages</td>
                 <td>FREE</td>
-                <td>Hourly snowfall, carolers, horse-drawn carriages, ice skating nearby, train rides</td>
+                <td>Hourly snowfall, carolers, horse-drawn carriages, ice skating nearby, train rides - <a href="https://celebrationtowncenter.com/" target="_blank">Learn More</a></td>
             </tr>
             <tr>
                 <td><strong>Lake Eola Christmas Lights</strong></td>
@@ -489,7 +1061,7 @@
                 <td>Through Jan 5, 2026</td>
                 <td>All Ages</td>
                 <td>FREE</td>
-                <td>Giant Christmas tree with light show, easy stroller-friendly walk</td>
+                <td>Giant Christmas tree with light show, easy stroller-friendly walk - <a href="https://www.orlando.gov/Parks-the-Environment/Directory/Lake-Eola-Park" target="_blank">Park Info</a></td>
             </tr>
             <tr>
                 <td><strong>Cranes Roost Park Christmas Lights</strong></td>
@@ -497,7 +1069,7 @@
                 <td>Nov 29 - Dec 31</td>
                 <td>All Ages</td>
                 <td>FREE</td>
-                <td>Over 150,000 lights, Santa visits on select nights, snow fairies</td>
+                <td>Over 150,000 lights, Santa visits on select nights, snow fairies - <a href="https://www.altamonte.org/Cranes-Roost-Park" target="_blank">Park Info</a></td>
             </tr>
             <tr>
                 <td><strong>Wekiva Island Winter Wonderland</strong></td>
@@ -505,7 +1077,7 @@
                 <td>December dates</td>
                 <td>All Ages</td>
                 <td>$5 admission</td>
-                <td>Daily snow flurries, 30-ft Christmas tree, Santa's Workshop</td>
+                <td>Daily snow flurries, 30-ft Christmas tree, Santa's Workshop - <a href="https://www.wekivaisland.com/" target="_blank">Visit Website</a></td>
             </tr>
             <tr>
                 <td><strong>Dazzling Nights at Leu Gardens</strong></td>
@@ -513,7 +1085,7 @@
                 <td>Select nights Nov 28 - Jan 4</td>
                 <td>All Ages</td>
                 <td>$20 adults</td>
-                <td>3/4 mile light display walk</td>
+                <td>3/4 mile light display walk - <a href="https://www.leugardens.org/dazzling-nights/" target="_blank">Buy Tickets</a></td>
             </tr>
             <tr>
                 <td><strong>Central Florida Zoo</strong></td>
@@ -521,7 +1093,7 @@
                 <td>Daily 9am-5pm</td>
                 <td>All Ages</td>
                 <td>Check website</td>
-                <td>Petting zoo, splash pad, train rides - perfect for young kids</td>
+                <td>Petting zoo, splash pad, train rides - perfect for young kids - <a href="https://www.centralfloridazoo.org/" target="_blank">Visit Website</a></td>
             </tr>
             <tr>
                 <td><strong>Crayola Experience</strong></td>
@@ -529,7 +1101,7 @@
                 <td>Daily</td>
                 <td>Young kids</td>
                 <td>Check website</td>
-                <td>Toddler Town area, 30+ hands-on activities</td>
+                <td>Toddler Town area, 30+ hands-on activities - <a href="https://www.crayolaexperience.com/orlando" target="_blank">Buy Tickets</a></td>
             </tr>
             <tr>
                 <td><strong>WonderWorks</strong></td>
@@ -537,7 +1109,7 @@
                 <td>Daily</td>
                 <td>Ages 3+</td>
                 <td>Check website</td>
-                <td>100+ hands-on exhibits, giant piano, interactive activities</td>
+                <td>100+ hands-on exhibits, giant piano, interactive activities - <a href="https://www.wonderworksorlando.com/" target="_blank">Buy Tickets</a></td>
             </tr>
             <tr>
                 <td><strong>SEA LIFE Aquarium</strong></td>
@@ -545,7 +1117,7 @@
                 <td>Daily</td>
                 <td>All Ages</td>
                 <td>Tickets online</td>
-                <td>Touch tanks, sea turtles, sharks - good for young kids</td>
+                <td>Touch tanks, sea turtles, sharks - good for young kids - <a href="https://www.visitsealife.com/orlando/" target="_blank">Buy Tickets</a></td>
             </tr>
             <tr>
                 <td><strong>LEGOLAND Florida</strong></td>
@@ -553,7 +1125,7 @@
                 <td>Daily</td>
                 <td>Ages 2-12</td>
                 <td>Tickets required</td>
-                <td>PERFECT for your 6-year-old Lego-loving nephew! Duplo Valley for toddlers</td>
+                <td>PERFECT for your 6-year-old Lego-loving nephew! Duplo Valley for toddlers - <a href="https://www.legoland.com/florida/" target="_blank">Buy Tickets</a></td>
             </tr>
         </table>
         </div>
@@ -794,3 +1366,8 @@
     </div>
 
     <div style="text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #165b33, #c41e3a); color: white; border-radius: 8px; font-size: clamp(0.9rem, 2.5vw, 1.1rem);">
+        <strong>✨ Have a magical Christmas vacation! ✨</strong><br>
+        This plan balances park time with rest, offers options for different age groups, and captures the special Christmas magic of Orlando.
+    </div>
+</body>
+</html>
